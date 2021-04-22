@@ -41,8 +41,6 @@ class MovieViewSet(viewsets.ModelViewSet):
                 serializer = RatingSerializer(rating, many=False)
                 response = {'message': 'Rating create', 'result': serializer.data}
                 return Response(response, status=status.HTTP_200_OK)
-
-
         else:
             response = {'message': 'Musis zadat hodnoceni'}
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
@@ -53,3 +51,11 @@ class RatingViewSet(viewsets.ModelViewSet):
     serializer_class = RatingSerializer
     authentication_classes = (TokenAuthentication, )
     permission_classes = (IsAuthenticated, )
+
+    def update(self, request, *args, **kwargs):
+        response = {'message': 'Nemuzete opravit hodnoceni tady'}
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
+
+    def create(self, request, *args, **kwargs):
+        response = {'message': 'Nemuzete vytvorit hodnoceni tady'}
+        return Response(response, status=status.HTTP_400_BAD_REQUEST)
